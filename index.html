@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kejutan Spesial</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebf0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            padding: 20px;
+        }
+        .hidden-message {
+            display: none;
+            font-size: 24px;
+            color: #d63384;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .heart-button {
+            background-color: #ff4d6d;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .heart-button:hover {
+            background-color: #c9184a;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 24px;
+            animation: float 2s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .new-page {
+            display: none;
+            text-align: center;
+        }
+        .new-page h1 {
+            color: #d63384;
+            font-size: 32px;
+        }
+        .new-page p {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <h1>Hai Sayang ❤️</h1>
+        <p>Aku punya sesuatu spesial untukmu...</p>
+        <button class="heart-button" onclick="showMessage()">Klik Aku!</button>
+        <div class="hidden-message">Aku sangat mencintaimu! 💖</div>
+        <div class="hearts"></div>
+    </div>
+    
+    <div class="new-page" id="newPage">
+        <h1>Surprise! 🎉</h1>
+        <p>Terima kasih sudah menjadi bagian terindah dalam hidupku. Aku sangat mencintaimu! 💖</p>
+        <p>Selalu bahagia bersama ya! 😊</p>
+    </div>
+    
+    <script>
+        function showMessage() {
+            document.querySelector('.hidden-message').style.display = 'block';
+            createHearts();
+            setTimeout(() => {
+                document.getElementById('container').style.display = 'none';
+                document.getElementById('newPage').style.display = 'block';
+            }, 2000);
+        }
+        function createHearts() {
+            const heartsContainer = document.querySelector('.hearts');
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animationDuration = Math.random() * 2 + 1 + 's';
+                heartsContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+        }
+    </script>
+</body>
+</html>
